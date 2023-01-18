@@ -13,6 +13,6 @@ public:
     int getX();
     void afficher();
 
-} bizarre(1);
+};
 
 #endif

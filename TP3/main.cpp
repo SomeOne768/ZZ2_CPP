@@ -1,11 +1,7 @@
 #include <iostream>
-
-
-class Bavarde {
-  // 
-  // Mettre votre code ici
-  //
-};
+#include "Bavarde.hpp"
+#include "Couple.hpp"
+#include "Famille.hpp"
 
 
 int main(int, char **) {
@@ -20,5 +16,13 @@ int main(int, char **) {
   }
 
   // Combien d'instances sont détruites ?
+  delete [] tab2;
+
+  Couple c{};
+  Couple c2{2,3};
+
+  
+  Famille f{5};
+
   return 0;
 }

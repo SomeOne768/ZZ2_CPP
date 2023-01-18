@@ -6,10 +6,6 @@ Bavarde::Bavarde(){
     x = 0;
 }
 
-auto f()
-{
-    return 4;
-}
 Bavarde::Bavarde(int x){
     printf("Construction de %d\n", x);
     this->x = x;
@@ -23,5 +19,5 @@ int Bavarde::getX(){
     return x;
 }
 void Bavarde::afficher(){
-    printf("Je m'affiche\n");
+    printf("Affichage de %d\n", x);
 }
