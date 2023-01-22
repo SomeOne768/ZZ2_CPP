@@ -5,8 +5,7 @@
 Fille::Fille(): Mere(){
     printf("J'instancie une Fille\n");
 }
-Fille::Fille(std::string nom): Fille(){
-    name = nom;
+Fille::Fille(std::string nom): Mere(nom){
 }
 
 

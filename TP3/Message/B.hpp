@@ -1,13 +1,16 @@
 #ifndef B_HPP_AZ
 #define B_HPP_AZ
+// #include "A.hpp"
 
-class B{
-    int j;
+class A;
+class B
+{
+    // int j;
 
 public:
-    exec(int);
-    send(A *a);
-}
-
+    int j;
+    void exec(int);
+    void send(A *a);
+};
 
 #endif

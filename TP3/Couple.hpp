@@ -1,7 +1,7 @@
 #ifndef COUPLE_HPP_AZ
 #define COUPLE_HPP_AZ
 #include "Bavarde.hpp"
-
+#include <cstdio>
 
 class Couple{
     Bavarde *b1;
