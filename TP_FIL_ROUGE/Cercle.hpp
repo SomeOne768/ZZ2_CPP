@@ -2,11 +2,14 @@
 #define CERCLE_HPP_AZ
 #include "Rectangle.hpp"
 
-class Cercle : public Rectangle{
+class Cercle : public Rectangle
+{
+
 public:
     Cercle(int,int,int,int);
     Cercle(int cx, int cy, int rayon);
-    virtual std::string toString() override;
+    std::string toString() override;
+    int ordre;
 
 };
 
