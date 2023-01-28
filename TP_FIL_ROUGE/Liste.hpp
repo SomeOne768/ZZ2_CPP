@@ -2,26 +2,34 @@
 #define __LISTE_HPP__AZ
 #include "Cercle.hpp"
 #include "Rectangle.hpp"
+#include "Forme.hpp"
+
 #include <iostream>
 
 const int TAILLE = 10;
 
-// class Cercle;
-// class Rectangle;
-
-class Liste{
+class Liste
+{
 public:
-    Cercle cercles[TAILLE];
     int nb_c;
-    Rectangle rectangles[TAILLE];
     int nb_r;
     int compteur;
-
     Liste();
+
+    Rectangle rectangles[TAILLE];
+    Cercle cercles[TAILLE];
+    //DEMANDER PROF: Cercle *cercles = new Cercle[TAILLE];
+
     int getCompteur();
     std::string toString();
+    void add(Rectangle&);
+    void add(Cercle&);
+    void afficher();
 
+    //DEMANDER prof: static void afficherTab(Forme **tab, int n);
+    static void afficherTab(Forme tab[TAILLE], int n);
+    // static void afficherTab(Rectangle tab[TAILLE], int n);
+    // static void afficherTab(Cercle tab[TAILLE], int n);
 };
-
 
 #endif

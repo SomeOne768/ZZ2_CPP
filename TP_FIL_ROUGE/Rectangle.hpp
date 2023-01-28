@@ -1,17 +1,18 @@
 #ifndef RECTANGLE_HPP_AZ
 #define RECTANGLE_HPP_AZ
-
-class Rectangle
+#include "Forme.hpp"
+class Rectangle : public Forme
 {
 protected:
     int x;
     int y;
-    int h;
-    int w;
 
 public:
+    Rectangle();
     Rectangle(int, int, int, int);
-    virtual std::string toString();
+    std::string toString() override;
+    void afficher() override;
+    int ordre;
 
 };
 

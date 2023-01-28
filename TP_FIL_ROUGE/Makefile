@@ -1,10 +1,11 @@
 # utilise le compilo par defaut de la machine
 CXX=g++
-SRC=main.cpp Cercle.cpp Rectangle.cpp
+SRC=main.cpp Cercle.cpp Rectangle.cpp Liste.cpp Point.cpp Forme.cpp tests_catch.cpp
+SRC_TEST = tests_catch.cpp Forme.cpp
 #SRC=$(wildcard *.cpp)  
 EXE=filerouge
 
-CXXFLAGS+=-Wall -Wextra -MMD -g -fdiagnostics-color=auto
+CXXFLAGS+=-Wall -Wextra -MMD -g -fdiagnostics-color=auto -O2
 LDFLAGS= #-lSDL
 
 OBJ=$(addprefix build/,$(SRC:.cpp=.o))
@@ -19,5 +20,8 @@ build/%.o: %.cpp
 
 clean:
 	rm -rf build core *.gch
+
+test:
+	g++ -o test tests_catch.cpp Forme.cpp $(CXXFLAGS)
 
 -include $(DEP)

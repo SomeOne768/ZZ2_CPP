@@ -7,8 +7,10 @@ private:
 public:
     Bavarde(/* args */);
     Bavarde(int);
+    Bavarde(Bavarde&);
     ~Bavarde();
     int getX();    
+    // Bavarde& operator=(const Bavarde &b);
 
 } bizarre(1);
 
@@ -31,6 +33,7 @@ Bavarde globale(2);
 
 
 void fonction(Bavarde b){
+    (void)b;
     std::cout << "code de la fonction";
 }
 
@@ -38,16 +41,35 @@ int Bavarde::getX(){
     return x;
 }
 
+Bavarde::Bavarde(Bavarde &b) : Bavarde(b.x){
+    
+}
+
+
+// Bavarde& Bavarde::operator=(const Bavarde &b)
+// {   
+//     *this = b;
+//     return *this;
+// }
+
+
+
 
 int main(){
 
     Bavarde b1(3);
     Bavarde b2(4);
-    Bavarde *p = new Bavarde(5);
+    // Bavarde *p = new Bavarde(5);
 
-    fonction(b1);
+    
 
     std::cout << Bavarde(0).getX() << std::endl;
+
+    std::cout << "ok\n";
+    Bavarde b4 = b1;
+    std::cout << "copie ?: " << ((&b4 != &b1) ? "True" : "False") << ((&b4 != &b1) ? " " : " pas") << "ok\n";
+    
+
 
 
     return 0;

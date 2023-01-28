@@ -9,6 +9,7 @@ private:
 public:
     Bavarde(/* args */);
     Bavarde(int);
+    Bavarde& operator=(const Bavarde &b);//copie 
     ~Bavarde();
     int getX();
     void afficher();

@@ -5,6 +5,7 @@
 #include "statisticien.hpp"
 #include "catch.hpp"
 
+
 TEST_CASE("Producteur_Initialisation")
 {
   Producteur p;
