@@ -16,21 +16,21 @@ void Liste::afficherTab(Forme tab[], int n)
     }
 }
 
-// void Liste::afficherTab(Rectangle tab[], int n)
-// {
-//     for (int i = 0; i < n; i++)
-//     {
-//         printf("%s ", tab[i].toString().c_str());
-//     }
-// }
+void Liste::afficherTab(Rectangle tab[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("%s ", tab[i].toString().c_str());
+    }
+}
 
-// void Liste::afficherTab(Cercle tab[], int n)
-// {
-//     for (int i = 0; i < n; i++)
-//     {
-//         printf("%s ", tab[i].toString().c_str());
-//     }
-// }
+void Liste::afficherTab(Cercle tab[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        printf("%s ", tab[i].toString().c_str());
+    }
+}
 
 int Liste::getCompteur()
 {
@@ -145,4 +145,11 @@ void Liste::add(Cercle &c)
         nb_c++;
         compteur++;
     }
+}
+
+
+void Liste::testProf()
+{
+    afficherTab(cercles, nb_c);
+    afficherTab(rectangles, nb_r);
 }

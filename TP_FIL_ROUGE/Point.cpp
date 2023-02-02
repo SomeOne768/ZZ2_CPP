@@ -2,7 +2,7 @@
 
 Point::Point() : Point(0, 0) {}
 
-Point::Point(int x, int y) : x(x), y(x)
+Point::Point(int x, int y) : x(x), y(y)
 {
 }
 

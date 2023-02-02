@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Cercle.hpp"
+#include <sstream>
 
 Cercle::Cercle() : Cercle(0, 0, 0, 0) {}
 Cercle::Cercle(int x, int y, int w, int h)
@@ -16,9 +17,9 @@ Cercle::Cercle(int cx, int cy, int rayon) :
 
 std::string Cercle::toString()
 {
-    char buffer[100];
-    sprintf(buffer, "CERCLE: %d %d %d %d", this->getPoint().getX(), this->getPoint().getY(), w, h);
-    std::string s = buffer;
+    std::ostringstream oss;
+    oss << "CERCLE: "<< this->getPoint().getX() <<" "<< this->getPoint().getY() << " " << w << " " << h << std::endl;
+    std::string s(oss.str());
     return s;
 }
 

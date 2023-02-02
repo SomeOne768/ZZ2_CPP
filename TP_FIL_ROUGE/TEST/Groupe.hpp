@@ -9,6 +9,11 @@ const int TAILLE = 10;
 
 class Groupe : public Forme
 {
+    /*
+    template <typename FormeType>
+    void add(FormeType & forme, int&);
+    */
+    void addEncore(Forme & f);
 public:
     int nb_c;
     int nb_r;
@@ -17,20 +22,22 @@ public:
     Groupe(Point, int, int);
     Groupe(int, int, int, int);
 
-    Rectangle rectangles[TAILLE];
-    Cercle cercles[TAILLE];
-    //DEMANDER PROF: Cercle *cercles = new Cercle[TAILLE];
+    Forme formes[TAILLE];
 
     int getCompteur();
     std::string toString();
+    // -- A retirer
     void add(Rectangle&);
     void add(Cercle&);
+    // --
+    // A finir: reprendre ici
+    void add(Forme&);
+    // --
     void afficher();
 
-    //DEMANDER prof: static void afficherTab(Forme **tab, int n);
-    static void afficherTab(Forme tab[TAILLE], int n);
-    // static void afficherTab(Rectangle tab[TAILLE], int n);
-    // static void afficherTab(Cercle tab[TAILLE], int n);
+
+
+    static void afficherTab(Forme *tab[TAILLE], int n);
 };
 
 #endif

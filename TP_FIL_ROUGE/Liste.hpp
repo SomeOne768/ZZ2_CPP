@@ -26,10 +26,11 @@ public:
     void add(Cercle&);
     void afficher();
 
-    //DEMANDER prof: static void afficherTab(Forme **tab, int n);
+    //DEMANDER prof: static void afficherTab(Forme *tab[], int n);
     static void afficherTab(Forme tab[TAILLE], int n);
-    // static void afficherTab(Rectangle tab[TAILLE], int n);
-    // static void afficherTab(Cercle tab[TAILLE], int n);
+    static void afficherTab(Rectangle tab[TAILLE], int n);
+    static void afficherTab(Cercle tab[TAILLE], int n);
+    void testProf();
 };
 
 #endif

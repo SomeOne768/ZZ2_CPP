@@ -57,5 +57,8 @@ int main(int, char **)
    //std::cout << "test troncature:\n";
    // DEMANDER PROF : Liste::afficherTab(&L.cercles, L.nb_c);
 
+   // L a 2 cercles et 2 rectangles
+   L.testProf();
+
    return 0;
 }

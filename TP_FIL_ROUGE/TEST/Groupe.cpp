@@ -116,24 +116,138 @@ void Groupe::afficher()
     }
 }
 
+
+/*
+template <typename FormeType>
+void Groupe::add(FormeType & forme, int & nb) {
+
+}
+*/
+
+// Le type est automatiquement detecté par la lambda car passé par référence.
+// Dans notre cas actuel il faudrait en plus donné le tableau donc detecter le nullptr
+/*
+auto addForme = [](auto &maForme, int &nb)
+{
+};
+*/
+
 void Groupe::add(Rectangle &r)
 {
+    // add(r, nb_r);
+    // addEncore(r, nb_r);
+
+    // On souhaite ici mettre à jour les valeur h et w pour contenir toutes les formes
     if (nb_r < TAILLE)
     {
         r.ordre = compteur;
         this->rectangles[nb_r] = r;
         nb_r++;
         compteur++;
+
+        // On verifie les bords gauche/sup
+        Point p = this->getPoint();
+        if (r.getPoint().getX() < p.getX())
+        {
+            p.setX(r.getPoint().getX());
+        }
+
+        if (r.getPoint().getY() < p.getY())
+        {
+            p.setY(r.getPoint().getY());
+        }
+
+        // On verifie les dim:
+        int x_max = r.getPoint().getX() + r.getLargeur();
+        int y_max = r.getPoint().getY() + r.getHauteur();
+        int delta_x = p.getX() + getLargeur() - x_max;
+        int delta_y = p.getY() + getHauteur() - y_max;
+        if (delta_x < 0)
+        {
+            w += delta_x;
+        }
+
+        if (delta_y < 0)
+        {
+            h += delta_y;
+        }
     }
 }
 
 void Groupe::add(Cercle &c)
 {
-    if (nb_r < TAILLE)
+    if (nb_c < TAILLE)
     {
         c.ordre = compteur;
         this->cercles[nb_c] = c;
         nb_c++;
         compteur++;
+
+        // On verifie les bords gauche/sup
+        Point p = this->getPoint();
+        if (c.getPoint().getX() < p.getX())
+        {
+            p.setX(c.getPoint().getX());
+        }
+
+        if (c.getPoint().getY() < p.getY())
+        {
+            p.setY(c.getPoint().getY());
+        }
+
+        // On verifie les dim:
+        int x_max = c.getPoint().getX() + c.getLargeur();
+        int y_max = c.getPoint().getY() + c.getHauteur();
+        int delta_x = p.getX() + getLargeur() - x_max;
+        int delta_y = p.getY() + getHauteur() - y_max;
+        if (delta_x < 0)
+        {
+            w += delta_x;
+        }
+
+        if (delta_y < 0)
+        {
+            h += delta_y;
+        }
     }
 }
+
+
+// A finir: reprendre ici 
+
+// void Groupe::add(Forme &f){
+//     if (nb_c < TAILLE)
+//     {
+//         c.ordre = compteur;
+//         this->cercles[nb_c] = c;
+//         nb_c++;
+//         compteur++;
+
+//         // On verifie les bords gauche/sup
+//         Point p = this->getPoint();
+//         if (c.getPoint().getX() < p.getX())
+//         {
+//             p.setX(c.getPoint().getX());
+//         }
+
+//         if (c.getPoint().getY() < p.getY())
+//         {
+//             p.setY(c.getPoint().getY());
+//         }
+
+//         // On verifie les dim:
+//         int x_max = c.getPoint().getX() + c.getLargeur();
+//         int y_max = c.getPoint().getY() + c.getHauteur();
+//         int delta_x = p.getX() + getLargeur() - x_max;
+//         int delta_y = p.getY() + getHauteur() - y_max;
+//         if (delta_x < 0)
+//         {
+//             w += delta_x;
+//         }
+
+//         if (delta_y < 0)
+//         {
+//             h += delta_y;
+//         }
+//     }
+// }
