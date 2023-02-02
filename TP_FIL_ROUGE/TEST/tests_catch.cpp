@@ -4,6 +4,7 @@
 #include "Forme.hpp"
 #include "Point.hpp"
 #include "Cercle.hpp"
+#include "Rectangle.hpp"
 
 int nb_instance_forme = 0;
 
@@ -101,4 +102,15 @@ TEST_CASE("Cercle", "[Cercle]") {
    REQUIRE(c2.getHauteur() == 0);  
 
    REQUIRE(Forme::prochainId() == (compteur+2) ); 
+}
+
+TEST_CASE("Polymorphisme", "[Forme]") {
+   Forme * f1 = new Cercle;
+   Forme * f2 = new Rectangle;
+
+   REQUIRE(f1->toString() == "CERCLE: 0 0 0 0" );
+   REQUIRE(f2->toString() == "RECTANGLE: 0 0 0 0");
+
+   delete f1;
+   delete f2;
 }

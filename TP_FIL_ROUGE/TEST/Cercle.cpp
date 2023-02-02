@@ -24,7 +24,7 @@ std::string Cercle::toString()
 
 void Cercle::afficher()
 {
-    printf("Cercle - w:%d h:%d x:%d y:%d\n", w, h, this->getPoint().getX(), this->getPoint().getY());
+    printf("Cercle - w:%d h:%d x:%d y:%d", w, h, this->getPoint().getX(), this->getPoint().getY());
 }
 
 int Cercle::getRayon()

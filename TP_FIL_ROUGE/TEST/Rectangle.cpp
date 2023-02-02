@@ -17,5 +17,5 @@ std::string Rectangle::toString(){
 
 
 void Rectangle::afficher(){
-    printf("Rectangle - w:%d h:%d x:%d y:%d\n", w, h, x, y);
+    printf("Rectangle - w:%d h:%d x:%d y:%d", w, h, x, y);
 }
