@@ -12,7 +12,6 @@ public:
     Rectangle(int, int, int, int);
     std::string toString() override;
     void afficher() override;
-    int ordre;
 
 };
 

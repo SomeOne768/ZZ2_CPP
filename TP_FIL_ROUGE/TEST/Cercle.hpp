@@ -13,7 +13,7 @@ public:
     Cercle(int cx, int cy, int rayon);
     std::string toString() override;
     void afficher() override;
-    int ordre;
+    
 
     int getRayon();
     void setRayon(int);

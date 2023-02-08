@@ -36,6 +36,7 @@ public:
 
     static int prochainId();
     int getId();
+    int ordre;
 
 
 };

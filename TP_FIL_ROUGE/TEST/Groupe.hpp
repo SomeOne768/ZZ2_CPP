@@ -15,8 +15,7 @@ class Groupe : public Forme
     */
     void addEncore(Forme & f);
 public:
-    int nb_c;
-    int nb_r;
+    int nb_f;
     int compteur;
     Groupe();
     Groupe(Point, int, int);
@@ -27,8 +26,8 @@ public:
     int getCompteur();
     std::string toString();
     // -- A retirer
-    void add(Rectangle&);
-    void add(Cercle&);
+    // void add(Rectangle&);
+    // void add(Cercle&);
     // --
     // A finir: reprendre ici
     void add(Forme&);
