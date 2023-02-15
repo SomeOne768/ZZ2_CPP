@@ -82,12 +82,23 @@ TEST_CASE("operateur d'affectation") {
 // {
 
 // }
+// std::stringstream& operator<<(std::stringstream &oss, const Chaine &c)
+// {
+//     oss << c.c_str();
+//     return oss;
+// }
 
 TEST_CASE("Surcharge <<") {
     const char * chaine = "une nouvelle surcharge";
     Chaine s(chaine);
-    std::stringstream ss;
+    // std::stringstream ss;
+    Chaine ss;
+    ss << s;
     // ss << s;  // :-)
-
-    // CHECK( ss.str() == chaine ); //  test de std::string, again :-))
+    std::cout << "ICI:" <<'\n';
+    std::cout << chaine << '\n';
+    std::cout << "ICI:" <<'\n';
+    std::cout << ss.c_str() << '\n';
+    std::cout << "ICI:" <<'\n';
+    CHECK( ss == chaine); 
 }

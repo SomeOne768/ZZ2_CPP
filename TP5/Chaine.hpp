@@ -25,6 +25,9 @@ public:
 
     void afficher() const;
     void afficher(std::ostream&) const;
+
+    void operator<<(const Chaine c);
+    bool operator==(const char*) const;
 };
 
 #endif

@@ -9,7 +9,6 @@ Chaine::Chaine()
     tab = nullptr;
 }
 
-
 Chaine::Chaine(char *s)
 {
     capacity = strlen(s);
@@ -22,7 +21,7 @@ Chaine::Chaine(char *s)
     }
 }
 
-Chaine::Chaine(const char *s) : Chaine( (char*) s){}
+Chaine::Chaine(const char *s) : Chaine((char *)s) {}
 
 Chaine::Chaine(int x) : capacity(x), size(0)
 {
@@ -74,10 +73,10 @@ Chaine Chaine::operator=(Chaine &c)
     {
         this->capacity = c.getCapacite();
         this->size = c.getSize();
-        
+
         delete[] this->tab;
 
-        this->tab = new char[capacity+1];
+        this->tab = new char[capacity + 1];
         strncpy(this->tab, c.c_str(), size);
         tab[size] = '\0';
     }
@@ -90,7 +89,47 @@ void Chaine::afficher() const
 }
 
 void Chaine::afficher(std::ostream &s) const
-{   
+{
     s << tab;
 }
 
+void Chaine::operator<<(const Chaine c)
+{
+    if (&c != this)
+    {
+        int len = c.size + this->size;
+
+        if (!this->tab)
+        {
+            std::cout << "Vide\n";
+            this->tab = new char[len + 1];
+            this->capacity = len;
+            this->size = 0;
+            this->tab[0] = 0;
+        }
+
+        if (len > this->capacity)
+        {
+            std::cout << "taille trop petite\n";
+            Chaine temp(len);
+            delete[] this->tab;
+            this->tab = new char[len + 1];
+            strcpy(this->tab, temp.c_str());
+        }
+        // int len = this->size + c.size;
+        // if(len>this->capacity)
+        // {
+        //     Chaine temp{len+1};
+        //     strcpy(temp.tab, this->tab);
+        //     this = temp;
+        // }
+        strcat(this->tab, c.tab); // this->capacity-1-this->size);
+        size += c.size;
+        tab[size] = 0;
+    }
+}
+
+bool Chaine::operator==(const char *c) const
+{
+    return !strcmp(tab, c);
+}
