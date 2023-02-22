@@ -93,7 +93,7 @@ void Chaine::afficher(std::ostream &s) const
     s << tab;
 }
 
-void Chaine::operator<<(const Chaine c)
+Chaine& Chaine::operator<<(const Chaine c)
 {
     if (&c != this)
     {
@@ -116,20 +116,29 @@ void Chaine::operator<<(const Chaine c)
             this->tab = new char[len + 1];
             strcpy(this->tab, temp.c_str());
         }
-        // int len = this->size + c.size;
-        // if(len>this->capacity)
-        // {
-        //     Chaine temp{len+1};
-        //     strcpy(temp.tab, this->tab);
-        //     this = temp;
-        // }
         strcat(this->tab, c.tab); // this->capacity-1-this->size);
         size += c.size;
         tab[size] = 0;
     }
+    return *this;
 }
 
 bool Chaine::operator==(const char *c) const
 {
     return !strcmp(tab, c);
+}
+
+char& Chaine::operator[](int i)
+{
+    // if(i<0 || i>size)
+    // {
+    //     return NULL;
+    // }
+
+    return tab[i];
+}
+
+const char& Chaine::operator[](int i) const
+{
+    return tab[i];
 }

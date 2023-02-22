@@ -88,6 +88,18 @@ TEST_CASE("operateur d'affectation") {
 //     return oss;
 // }
 
+// bool std::stringstream::operator==(char* s1)
+// {
+//     int i = 0;
+//     while (s1[i] != '\0' && this->str()[i] != '\0')
+//     {
+//         i++;
+//     }
+
+//     return (s1[i] == '\0' && this->str()[i] == '\0');
+    
+// }
+
 TEST_CASE("Surcharge <<") {
     const char * chaine = "une nouvelle surcharge";
     Chaine s(chaine);
@@ -95,10 +107,19 @@ TEST_CASE("Surcharge <<") {
     Chaine ss;
     ss << s;
     // ss << s;  // :-)
-    std::cout << "ICI:" <<'\n';
-    std::cout << chaine << '\n';
-    std::cout << "ICI:" <<'\n';
-    std::cout << ss.c_str() << '\n';
-    std::cout << "ICI:" <<'\n';
+
     CHECK( ss == chaine); 
+}
+
+// void operator<<()
+// {
+//     std::cout << tab[iterator] << std::endl;
+// }
+TEST_CASE("Surcharge []")
+{
+    Chaine s{"0123456789"};
+
+    s[3] = '0';
+    std::cout << s.c_str() << std::endl;
+    CHECK(s == "0120456789");
 }

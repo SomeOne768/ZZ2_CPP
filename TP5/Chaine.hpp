@@ -8,8 +8,10 @@ class Chaine  {
     int capacity;
     int size;
     char *tab;
+    
 
 public:
+int iterator = 0;
     Chaine();
     Chaine(char *);
     Chaine(const char *);
@@ -26,8 +28,12 @@ public:
     void afficher() const;
     void afficher(std::ostream&) const;
 
-    void operator<<(const Chaine c);
+    Chaine& operator<<(const Chaine c);
     bool operator==(const char*) const;
+
+    char& operator[](int);
+
+    const char& operator[](int) const;
 };
 
 #endif
