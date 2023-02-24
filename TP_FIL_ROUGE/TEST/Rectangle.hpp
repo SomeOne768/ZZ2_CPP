@@ -3,15 +3,13 @@
 #include "Forme.hpp"
 class Rectangle : public Forme
 {
-protected:
-    int x;
-    int y;
 
 public:
     Rectangle();
     Rectangle(int, int, int, int);
     std::string toString() override;
     void afficher() override;
+    virtual Forme *clone(const Rectangle &) const;
 
 };
 

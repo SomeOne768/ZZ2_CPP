@@ -8,8 +8,8 @@ class Point
 public:
     Point();
     Point(int, int);
-    int getX();
-    int getY();
+    int getX() const;
+    int getY() const;
     void setX(int);
     void setY(int);
     static Point ORIGINE;

@@ -18,7 +18,7 @@ Cercle::Cercle(int cx, int cy, int rayon) :
 std::string Cercle::toString()
 {
     std::ostringstream oss;
-    oss << "CERCLE: "<< this->getPoint().getX() <<" "<< this->getPoint().getY() << " " << w << " " << h << std::endl;
+    oss << "CERCLE: "<< this->getPoint().getX() <<" "<< this->getPoint().getY() << " " << w << " " << h;
     std::string s(oss.str());
     return s;
 }
@@ -37,4 +37,11 @@ void Cercle::setRayon(int r)
 {
     // On retouche au centre  ?
     w = h = r;
+}
+
+Forme* Cercle::clone(const Cercle &c) const
+{
+    Cercle *out = new Cercle(c.getX(), c.getY(), c.w, c.h);
+
+    return out;
 }
