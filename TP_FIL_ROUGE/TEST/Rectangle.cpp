@@ -9,7 +9,7 @@ Rectangle::Rectangle() : Rectangle(0,0,0,0){
 Rectangle::Rectangle(int x, int y, int w, int h) : Forme(x, y, w, h, COULEURS::BLEU){
 }
 
-std::string Rectangle::toString(){
+std::string Rectangle::toString() {
     std::ostringstream oss;
     oss << "RECTANGLE: "<< getX() <<" "<< getY() << " " << w << " " << h;
     std::string s(oss.str());

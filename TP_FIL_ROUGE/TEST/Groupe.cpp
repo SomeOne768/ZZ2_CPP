@@ -26,16 +26,12 @@ int Groupe::getCompteur()
     return compteur;
 }
 
-std::string Groupe::toString()
+std::string Groupe::toString() 
 {
-    // On affiche dans l'ordre
-    int i = 0,
-        j = 0;
-
     std::string out = "";
-    while (i < nb_f)
+    for(auto &e: MyForms)
     {
-        out += formes[i].toString();
+        out += e.toString();
     }
 
     return out;
@@ -43,22 +39,21 @@ std::string Groupe::toString()
 
 void Groupe::afficher()
 {
-    int i = 0,
-        j = 0;
-
-    while (i < nb_f)
+    for(auto &e: MyForms)
     {
-       formes[i].afficher();
+        std::cout << " " << e.toString();
     }
 }
 
 
-/*
-template <typename FormeType>
-void Groupe::add(FormeType & forme, int & nb) {
 
+void Groupe::add(Forme &forme) 
+{
+    nb_f++;
+    compteur++;
+    MyForms.push_back(forme);
 }
-*/
+
 
 // Le type est automatiquement detecté par la lambda car passé par référence.
 // Dans notre cas actuel il faudrait en plus donné le tableau donc detecter le nullptr
@@ -151,39 +146,39 @@ auto addForme = [](auto &maForme, int &nb)
 
 // A finir: reprendre ici 
 
-void Groupe::add(Forme &f){
-    if (nb_f < TAILLE)
-    {
-        f.ordre = compteur;
-        this->formes[nb_f] = f;
-        nb_f++;
-        compteur++;
+// void Groupe::add(Forme &f){
+//     if (nb_f < TAILLE)
+//     {
+//         f.ordre = compteur;
+//         this->formes[nb_f] = f;
+//         nb_f++;
+//         compteur++;
 
-        // On verifie les bords gauche/sup
-        Point p = this->getPoint();
-        if (f.getPoint().getX() < p.getX())
-        {
-            p.setX(f.getPoint().getX());
-        }
+//         // On verifie les bords gauche/sup
+//         Point p = this->getPoint();
+//         if (f.getPoint().getX() < p.getX())
+//         {
+//             p.setX(f.getPoint().getX());
+//         }
 
-        if (f.getPoint().getY() < p.getY())
-        {
-            p.setY(f.getPoint().getY());
-        }
+//         if (f.getPoint().getY() < p.getY())
+//         {
+//             p.setY(f.getPoint().getY());
+//         }
 
-        // On verifie les dim:
-        int x_max = f.getPoint().getX() + f.getLargeur();
-        int y_max = f.getPoint().getY() + f.getHauteur();
-        int delta_x = p.getX() + getLargeur() - x_max;
-        int delta_y = p.getY() + getHauteur() - y_max;
-        if (delta_x < 0)
-        {
-            w += delta_x;
-        }
+//         // On verifie les dim:
+//         int x_max = f.getPoint().getX() + f.getLargeur();
+//         int y_max = f.getPoint().getY() + f.getHauteur();
+//         int delta_x = p.getX() + getLargeur() - x_max;
+//         int delta_y = p.getY() + getHauteur() - y_max;
+//         if (delta_x < 0)
+//         {
+//             w += delta_x;
+//         }
 
-        if (delta_y < 0)
-        {
-            h += delta_y;
-        }
-    }
-}
+//         if (delta_y < 0)
+//         {
+//             h += delta_y;
+//         }
+//     }
+// }

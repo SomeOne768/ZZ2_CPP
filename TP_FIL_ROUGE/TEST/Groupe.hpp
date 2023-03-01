@@ -4,16 +4,12 @@
 #include "Rectangle.hpp"
 #include "Forme.hpp"
 #include <iostream>
-
+#include <vector>
 const int TAILLE = 10;
 
 class Groupe : public Forme
 {
-    /*
-    template <typename FormeType>
-    void add(FormeType & forme, int&);
-    */
-    void addEncore(Forme & f);
+    
 public:
     int nb_f;
     int compteur;
@@ -21,22 +17,15 @@ public:
     Groupe(Point, int, int);
     Groupe(int, int, int, int);
 
-    Forme formes[TAILLE];
+    std::vector<Forme> MyForms;
+    
 
     int getCompteur();
-    std::string toString();
-    // -- A retirer
-    // void add(Rectangle&);
-    // void add(Cercle&);
-    // --
-    // A finir: reprendre ici
+    std::string toString() ;
+
     void add(Forme&);
-    // --
+
     void afficher();
-
-
-
-    static void afficherTab(Forme *tab[TAILLE], int n);
 };
 
 #endif

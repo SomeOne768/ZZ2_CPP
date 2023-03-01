@@ -5,6 +5,7 @@
 #include "Point.hpp"
 #include "Cercle.hpp"
 #include "Rectangle.hpp"
+#include "Groupe.hpp"
 
 int nb_instance_forme = 0;
 
@@ -166,4 +167,17 @@ TEST_CASE("Creation d'une copie", "[Forme]")
   delete r2;
 
 
+}
+
+TEST_CASE("Test vector", "[Group]")
+{
+  Groupe g;
+  CHECK(g.compteur == 0);
+  CHECK(g.nb_f == 0);
+
+  Cercle c(0,0,5);// = new Cercle(0,0,5);
+  g.add(c);
+
+  CHECK(g.compteur == 1);
+  CHECK(g.nb_f == 1);
 }
