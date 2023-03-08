@@ -81,6 +81,20 @@ public:
 
 };
 
+class SpecialStringSort 
+{
+public: 
+    SpecialStringSort() {}
+
+    int operator()(const std::string s1, const std::string s2) const 
+    {
+        std::string subs1 = s1.substr(1);
+        std::string subs2 = s2.substr(1);
+        return subs1 < subs2;
+    }
+};
+
+
 int main()
 {
 //     using vzz = std::vector<ZZ> ;
@@ -145,22 +159,29 @@ int main()
     // max = std::max_element(v.begin(), v.end());
     // std::cout << "min: " << *min << "\n max: " << *max << "\n";
 
-    Fibo f{};
+    // Fibo f{};
 
-    int n = 50;
-    std::vector<int> v(n);
-    std::generate_n(v.begin(), n, f);
+    // int n = 50;
+    // std::vector<int> v(n);
+    // std::generate_n(v.begin(), n, f);
 
-    for(auto it=v.begin(); it!=v.end(); ++it)
-    {
-        std::cout << " " << *it;
-    }
+    // for(auto it=v.begin(); it!=v.end(); ++it)
+    // {
+    //     std::cout << " " << *it;
+    // }
 
-    std::back_insert_iterator<std::vector<int> > dest (v);
-    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, "\n"));
+    // std::back_insert_iterator<std::vector<int> > dest (v);
+    // std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, "\n"));
 
 
-    // PArtie 3 à finir
+    // Partie 3
+    //tri avec notre propre predicat
+    std::vector<std::string> v(2);
+    v.push_back("Machaine1");
+    v.push_back("Machaine0");
+
+    std::sort(v.begin(), v.end(), SpecialStringSort{});
+
 
     return 0;
 }
