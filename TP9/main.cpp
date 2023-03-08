@@ -2,6 +2,10 @@
 #include <vector>
 #include <queue>
 #include <cstring>
+#include <algorithm>
+#include <experimental/random>
+#include <numeric>
+#include <iterator>
 // Uca.pereda.fr/cpp
 class ZZ
 {
@@ -40,29 +44,123 @@ std::ostream &operator<<(std::ostream &oss,const ZZ &z)
     return oss;   
 }
 
+class Rand_0_100 
+{
+    int a = 0,
+        b = 100;
+public:
+  Rand_0_100(){}
+  Rand_0_100(int min, int max){
+    a = min;
+    b = max;
+  }
+
+  int rand(){
+    return std::experimental::randint(a, b);
+  }
+
+  int operator()()
+  {
+    return rand();
+  }
+};
+
+class Fibo 
+{
+    long int un_1 = 1, un = 0;
+public:
+    Fibo() {}
+
+    int operator()()
+    {
+        long int out = un;
+        un_1 += un;
+        un = un_1 - un;
+        return out;
+    }
+
+};
+
 int main()
 {
-    using vzz = std::vector<ZZ> ;
+//     using vzz = std::vector<ZZ> ;
 
-    vzz zz;
+//     vzz zz;
 
-   zz.push_back(ZZ( "zoghlami", "jalil" ));
-   zz.push_back(ZZ( "zoghlami", "abdeljalil" ));
+//    zz.push_back(ZZ( "zoghlami", "jalil" ));
+//    zz.push_back(ZZ( "zoghlami", "abdeljalil" ));
 //    zz.push_back(ZZ( "0zoghlami", "jalil" ));
 //    zz.push_back(ZZ( "zoghlami", "9jalil" ));
 //    zz.push_back(ZZ( "zoghlami", "4jalil" ));
 
-    std::priority_queue<ZZ> tri;
+    // std::priority_queue<ZZ> tri;
 
-    for (vzz::iterator it = zz.begin();
-         it != zz.end(); ++it)
-        tri.push(*it);
+    // for (vzz::iterator it = zz.begin();
+    //      it != zz.end(); ++it)
+    //     tri.push(*it);
 
-    while (!tri.empty())
+    // while (!tri.empty())
+    // {
+    //     std::cout << tri.top() << " ";
+    //     tri.pop();
+    // }
+
+
+    /******* 2 Exemples simples  ********/
+    // 2.1 Rand 0 a 100
+    Rand_0_100 r{};
+    std::cout << "alea: " << r.rand() << "\n";
+
+    // std::vector<int> v(50);
+    // std::generate(v.begin(), v.end(), r);
+    // for(auto it = v.begin(); it!=v.end(); ++it)
+    // {
+    //     std::cout << " " << *it;
+    // }
+
+    // std::vector<int> v(50);
+    // std::generate_n(v.begin(), 50, r);
+    // for(auto it = v.begin(); it!=v.end(); ++it)
+    // {
+    //     std::cout << " " << *it;
+    // }
+
+
+    // Back inserter à finir
+
+    //std::accumulate
+    // std::vector<int> v(50);
+    // std::generate_n(v.begin(), 50, r);
+    // int moyenne = std::accumulate(v.begin(), v.end(), 0)/50;
+    // std::cout << "moyenne: " << moyenne << "\n";
+
+    // auto min = std::min_element(v.begin(), v.end());
+    // auto max = std::max_element(v.begin(), v.end());
+
+    // std::cout << "min: " << *min << "\n max: " << *max << "\n";
+
+    // std::generate_n(v.begin(), 50, Rand_0_100(0, 230));
+    
+    // min = std::min_element(v.begin(), v.end());
+    // max = std::max_element(v.begin(), v.end());
+    // std::cout << "min: " << *min << "\n max: " << *max << "\n";
+
+    Fibo f{};
+
+    int n = 50;
+    std::vector<int> v(n);
+    std::generate_n(v.begin(), n, f);
+
+    for(auto it=v.begin(); it!=v.end(); ++it)
     {
-        std::cout << tri.top() << " ";
-        tri.pop();
+        std::cout << " " << *it;
     }
+
+    std::back_insert_iterator<std::vector<int> > dest (v);
+    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, "\n"));
+
+
+    // PArtie 3 à finir
 
     return 0;
 }

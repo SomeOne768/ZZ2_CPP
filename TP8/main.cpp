@@ -38,6 +38,8 @@ public:
   // }
 };
 
+
+
 std::ostream &operator<<(std::ostream &oss, const ZZ &z)
 {
   oss << "prenom" << z.getName() << z.getFirstname() << "\n";
@@ -127,33 +129,33 @@ int main(int, char **)
 
   /******* PARTIE 5 ********/
   // 1.5. Tableau associatif
-  using mss = std::map<std::string, std::string> ;
-  mss m;
-  m.insert(std::pair<std::string, std::string>("loic", "405042"));
-  m.insert(std::make_pair("pierre", "405033"));
-  m.insert(std::make_pair("SOS C++ 24/7", "407662"));
-  m["secours"] = "42";
+  // using mss = std::map<std::string, std::string> ;
+  // mss m;
+  // m.insert(std::pair<std::string, std::string>("loic", "405042"));
+  // m.insert(std::make_pair("pierre", "405033"));
+  // m.insert(std::make_pair("SOS C++ 24/7", "407662"));
+  // m["secours"] = "42";
 
-  mss::iterator it = m.find("loic");
-  if (it == m.end())
-    std::cout << "et moi ?";
+  // mss::iterator it = m.find("loic");
+  // if (it == m.end())
+  //   std::cout << "et moi ?";
 
-  std::map<std::string, std::string> liste;
+  // std::map<std::string, std::string> liste;
 
-  std::copy(m.begin(), m.end(), std::ostream_iterator<int>(std::cout, " "));
-  std::map<std::string, std::string>::const_iterator it2 = liste.begin();
-  while (it2 != liste.end())
-  {
-    std::cout << it2->first << " "
-         << it2->second << std::endl;
-    ++it2;
-  }
+  // std::copy(m.begin(), m.end(), std::ostream_iterator<int>(std::cout, " "));
+  // std::map<std::string, std::string>::const_iterator it2 = liste.begin();
+  // while (it2 != liste.end())
+  // {
+  //   std::cout << it2->first << " "
+  //        << it2->second << std::endl;
+  //   ++it2;
+  // }
 
-  std::transform(liste.begin(), liste.end(),
-            std::ostream_iterator<std::string>(std::cout, " "), first);
+  // std::transform(liste.begin(), liste.end(),
+  //           std::ostream_iterator<std::string>(std::cout, " "), first);
 
 
-  std::copy(m.begin(), m.end(), liste);
+  // std::copy(m.begin(), m.end(), liste);   
 
   return 0;
 }
