@@ -43,4 +43,30 @@ TEST_CASE("Liste", "int")
 
   CHECK(L.empty() == false);  
 
+  REQUIRE(L.empty() == false);
+  int i = 0;
+  Cell_int *parcourir = L.beginIt();
+  while(parcourir && i <4)
+  {
+    i++;
+    parcourir = parcourir->getNext();
+  }
+
+  CHECK(i == 3);
+
+  L.display(std::cout);
+
+  Cell_int *c4 = new Cell_int{-1};
+  L.push_front(c4);
+
+  CHECK(L.beginIt() == c4);
+
+  CHECK(L.front() == c4);
+  CHECK(L.back() == c2);
+
+  CHECK(L.pop_back() == c2);
+  CHECK(L.pop_front() == c4);
+
+  CHECK(L.size() == 2);
+
 }
