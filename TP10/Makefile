@@ -1,6 +1,6 @@
 # utilise le compilo par defaut de la machine
 CXX=g++
-SRC=main.cpp 
+SRC=main_test.cpp tests_catch.cpp Machine.cpp Humain.cpp Humanoide.cpp 
 #SRC=$(wildcard *.cpp)  
 EXE=prog
 
