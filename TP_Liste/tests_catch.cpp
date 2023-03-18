@@ -70,3 +70,26 @@ TEST_CASE("Liste", "int")
   CHECK(L.size() == 2);
 
 }
+
+
+TEST_CASE("Test de copie")
+{
+  using Cell_int = Cell_T<int>;
+  using List_int = List_T<int>;
+
+  List_int L0{};
+
+  L0.push_back(new Cell_int{1});
+  L0.push_back(new Cell_int{2});
+  L0.push_back(new Cell_int{3});
+  L0.push_back(new Cell_int{4});
+  
+  List_int copie{L0};
+  CHECK(copie.size() == L0.size());
+  
+  L0.display(std::cout);
+  std::cout << "\n";
+  copie.display(std::cout);
+  std::cout << "\n";
+
+}

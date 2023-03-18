@@ -16,6 +16,29 @@ List_T<T>::~List_T()
 }
 
 template <typename T>
+List_T<T>::List_T(const List_T &L)
+{
+    if (L.empty())
+    {
+        begin = nullptr;
+    }
+    else
+    {
+        begin = new typename Cell_T<T>::Cell_T(*(L.begin));
+        // begin = new typename Cell_T<T>::template Cell_T(*(L.begin));
+
+        Cell_T<T> *parcourir = begin;
+        Cell_T<T> *current = L.begin->getNext();
+        while (current)
+        {
+            parcourir->addNext(new typename Cell_T<T>::Cell_T(*current));
+            parcourir = parcourir->getNext();
+            current = current->getNext();
+        }
+    }
+}
+
+template <typename T>
 bool List_T<T>::empty() const
 {
     return begin == nullptr;
@@ -127,7 +150,7 @@ int List_T<T>::size()
 {
     int compteur = 0;
     Cell_T<T> *parcourir = begin;
-    while(parcourir)
+    while (parcourir)
     {
         compteur++;
         parcourir = parcourir->getNext();

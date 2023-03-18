@@ -11,6 +11,7 @@ class Cell_T
 
 public:
     Cell_T(T);
+    Cell_T(const Cell_T &);
     void addNext(Cell_T *);
     void addPrev(Cell_T *);
     std::string toString() const;
@@ -31,6 +32,7 @@ class List_T
 public:
     List_T();
     ~List_T();
+    List_T(const List_T<T> &L);
     bool empty() const;
     Cell_T<T> *beginIt()
     {
@@ -47,7 +49,8 @@ public:
     Cell_T<T> *pop_front();
     Cell_T<T> *pop_back();
     int size();
-    
+
+    List_T<T>& operator=(List_T<T>&);
     // copie + affectation {COPLIEN}
 };
 

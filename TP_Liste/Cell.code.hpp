@@ -10,6 +10,11 @@ Cell_T<T>::Cell_T(T t)
     data = t;
 }
 
+template <typename T>
+Cell_T<T>::Cell_T(const Cell_T &t) : Cell_T(t.data)
+{
+    
+}
 
 template <typename T>
 const T Cell_T<T>::getData() const
