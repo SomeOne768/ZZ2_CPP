@@ -73,7 +73,7 @@ void List_T<T>::display(std::ostream &os)
     {
         os << "[";
 
-        Cell_T<T> *parcourir = beginIt();
+        Cell_T<T> *parcourir = begin;
         while (parcourir != nullptr)
         {
             os << parcourir->getData() << " ";

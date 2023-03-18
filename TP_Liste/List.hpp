@@ -23,6 +23,43 @@ public:
 };
 
 #include "Cell.code.hpp"
+template <typename T>
+class List_T;
+
+template <typename T>
+class ItList
+{
+    Cell_T<T> *cell;
+
+    ItList(Cell_T<T> *c) : cell(c)
+    {
+    }
+    friend class List_T<T>;
+
+public:
+    ItList() : cell(nullptr)
+    {
+    }
+
+    bool operator!=(const ItList<T> &it) const
+    {
+        return it.cell != cell;
+    }
+
+    void operator++()
+    {
+        cell = cell->getNext();
+    }
+    T operator*() const
+    {
+        return cell->getData();
+    }
+
+    bool equals(const ItList<T> &it) const
+    {
+        return !(*this != it);
+    }
+};
 
 template <typename T>
 class List_T
@@ -34,11 +71,6 @@ public:
     ~List_T();
     List_T(const List_T<T> &L);
     bool empty() const;
-    Cell_T<T> *beginIt()
-    {
-        return this->begin;
-    }
-
     void push_back(Cell_T<T> *);
     void push_back(T t);
     void display(std::ostream &);
@@ -49,9 +81,15 @@ public:
     Cell_T<T> *pop_front();
     Cell_T<T> *pop_back();
     int size();
-
-    List_T<T>& operator=(List_T<T>&);
-    // copie + affectation {COPLIEN}
+    List_T<T> &operator=(List_T<T> &);
+    ItList<T> beginIt()
+    {
+        return ItList<T>{begin};
+    }
+    ItList<T> end()
+    {
+        return ItList<T>{};
+    }
 };
 
 #include "List.code.hpp"

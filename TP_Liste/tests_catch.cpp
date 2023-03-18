@@ -3,9 +3,12 @@
 #include "catch.hpp"
 #include "List.hpp"
 
+using Cell_int = Cell_T<int>;
+using List_int = List_T<int>;
+using ItList_int = ItList<int>;
+
 TEST_CASE("Cellule", "int")
 {
-  using Cell_int = Cell_T<int>;
   Cell_int c{0};
 
   CHECK(c.getData() == 0);
@@ -29,8 +32,6 @@ TEST_CASE("Cellule", "int")
 
 TEST_CASE("Liste", "int")
 {
-  using List_int = List_T<int>;
-  using Cell_int = Cell_T<int>;
   List_int L{};
 
   CHECK(L.empty() == true);
@@ -41,25 +42,14 @@ TEST_CASE("Liste", "int")
   L.push_back(c1);
   L.push_back(c2);
 
-  CHECK(L.empty() == false);  
+  CHECK(L.empty() == false);
 
   REQUIRE(L.empty() == false);
-  int i = 0;
-  Cell_int *parcourir = L.beginIt();
-  while(parcourir && i <4)
-  {
-    i++;
-    parcourir = parcourir->getNext();
-  }
-
-  CHECK(i == 3);
 
   L.display(std::cout);
 
   Cell_int *c4 = new Cell_int{-1};
   L.push_front(c4);
-
-  CHECK(L.beginIt() == c4);
 
   CHECK(L.front() == c4);
   CHECK(L.back() == c2);
@@ -68,14 +58,10 @@ TEST_CASE("Liste", "int")
   CHECK(L.pop_front() == c4);
 
   CHECK(L.size() == 2);
-
 }
-
 
 TEST_CASE("Test de copie")
 {
-  using Cell_int = Cell_T<int>;
-  using List_int = List_T<int>;
 
   List_int L0{};
 
@@ -83,13 +69,39 @@ TEST_CASE("Test de copie")
   L0.push_back(new Cell_int{2});
   L0.push_back(new Cell_int{3});
   L0.push_back(new Cell_int{4});
-  
+
   List_int copie{L0};
   CHECK(copie.size() == L0.size());
-  
+
   L0.display(std::cout);
   std::cout << "\n";
   copie.display(std::cout);
   std::cout << "\n";
+}
+
+TEST_CASE("Test itérateur v2")
+{
+  List_int L{};
+  
+  L.push_back(new Cell_int{1});
+  L.push_back(new Cell_int{2});
+  L.push_back(new Cell_int{3});
+  L.push_back(new Cell_int{4});
+
+
+  ItList_int it = L.beginIt();
+
+  while (it != L.end())
+  {
+    std::cout << *it;
+    ++it;
+  }
+  std::cout<< std::endl;
+
+  ItList_int it2 = L.beginIt();
+  it = L.beginIt();
+  CHECK(it.equals(it2));
+  ++it2;
+  CHECK(!it.equals(it2));
 
 }
