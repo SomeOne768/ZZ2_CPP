@@ -3,11 +3,15 @@
 #include <iostream>
 
 template <typename T>
+class List_T;
+
+template <typename T>
 class Cell_T
 {
     T data;
     Cell_T *next;
     Cell_T *previous;
+    friend class List_T<T>;
 
 public:
     Cell_T(T);
@@ -23,8 +27,7 @@ public:
 };
 
 #include "Cell.code.hpp"
-template <typename T>
-class List_T;
+
 
 template <typename T>
 class ItList
@@ -46,18 +49,43 @@ public:
         return it.cell != cell;
     }
 
-    void operator++()
+    ItList<T> &operator++()
     {
         cell = cell->getNext();
+        return *this;
     }
-    T operator*() const
+
+    // // V1
+    // ItList<T>& operator++(int)
+    // {
+    //     return ++(*this);
+    // }
+
+    // V2 "copie"
+    ItList<T> operator++(int)
+    {
+        return (*this = ItList(cell->getNext()));
+    }
+
+    T operator*()
     {
         return cell->getData();
     }
 
+    // const T& operator*() const
+    // {
+    //     //Utiliser constructeur copie mais ici template => flemme
+    //     return cell->getData();
+    // }
+
     bool equals(const ItList<T> &it) const
     {
         return !(*this != it);
+    }
+
+    bool operator==(const ItList<T> &it) const
+    {
+        return this->equals(it);
     }
 };
 
@@ -82,14 +110,19 @@ public:
     Cell_T<T> *pop_back();
     int size();
     List_T<T> &operator=(List_T<T> &);
-    ItList<T> beginIt()
+    ItList<T> beginIt() const
     {
         return ItList<T>{begin};
     }
-    ItList<T> end()
+    ItList<T> end() const
     {
         return ItList<T>{};
     }
+
+    // ajouter iterator find(T), remove(iterator), insert(apres iterator)
+    ItList<T> find(T t) const;
+    void remove(ItList<T>&);
+    void insert(ItList<T>&, T);
 };
 
 #include "List.code.hpp"

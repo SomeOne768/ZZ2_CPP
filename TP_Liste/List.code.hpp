@@ -158,4 +158,52 @@ int List_T<T>::size()
 
     return compteur;
 }
+
+template <typename T>
+ItList<T> List_T<T>::find(T t) const
+{
+    ItList<T> it = this->beginIt();
+    while (it != end() && (*it) != t)
+    {
+        it++;
+    }
+
+    return it;
+}
+
+template <typename T>
+void List_T<T>::remove(ItList<T> &it)
+{
+    // Si on avait ajouter les prec ez
+    // sinon methdoe 2:
+
+    if (empty())
+        return;
+
+    Cell_T<T> *curr = it.cell;
+    if (begin == curr)
+    {   
+        begin = begin->getNext();
+        delete[] curr;
+    }
+    else
+    {
+        Cell_T<T> *next = curr->getNext();
+        if (next)
+        {
+            curr->data = next->data;
+            curr->addNext(next->getNext());
+            delete[] next;
+        }
+    }
+}
+
+template <typename T>
+void List_T<T>::insert(ItList<T> &it, T elt)
+{
+    Cell_T<T> *next = it.cell->getNext();
+    Cell_T<T> *newElt = new Cell_T<T>{elt};
+    it.cell->addNext(newElt);
+    newElt->addNext(next);
+}
 #endif

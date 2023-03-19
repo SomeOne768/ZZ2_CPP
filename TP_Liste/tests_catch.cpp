@@ -103,5 +103,29 @@ TEST_CASE("Test itérateur v2")
   CHECK(it.equals(it2));
   ++it2;
   CHECK(!it.equals(it2));
+  it++;
+  CHECK(it.equals(it2));
+
+}
+
+TEST_CASE("Fin Liste")
+{
+  List_int L{};
+  
+  L.push_back(new Cell_int{1});
+  L.push_back(new Cell_int{2});
+  L.push_back(new Cell_int{3});
+  L.push_back(new Cell_int{4});
+
+  CHECK(L.find(1) == L.beginIt());
+
+  ItList_int it = L.find(1);
+  L.remove(it);
+
+  CHECK(L.find(2) == L.beginIt());
+
+  it = L.beginIt();
+  L.insert(it, 52);
+  CHECK( (*(++L.beginIt())) == 52);
 
 }
